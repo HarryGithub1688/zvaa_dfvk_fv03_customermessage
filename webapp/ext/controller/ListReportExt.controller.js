@@ -4,7 +4,7 @@ sap.ui.define([], function () {
 		onInit: function () {},
 		
 		onAfterRendering: function () {
-			this.newFilterDate();
+			//this.newFilterDate();
 		},
 
 		newFilterDate: function () {
