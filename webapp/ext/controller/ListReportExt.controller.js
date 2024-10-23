@@ -10,18 +10,27 @@ sap.ui.define([], function () {
 		newFilterDate: function () {
 			var listReport = this.getView().byId("fe::ListReport");
 
-			if (new Date().getHours() > 19) {
+			/* if (new Date().getHours() > 19) {
 				var today = new Date();
 				today.setDate(new Date().getDate()+1);
 				var todayFormat = today.toDateString().split(" ")[1] + " " + today.toDateString().split(" ")[2] + ", " + today.toDateString().split(" ")[3];
 			} else {
 				var today = new Date();
 				var todayFormat = today.toDateString().split(" ")[1] + " " + today.toDateString().split(" ")[2] + ", " + today.toDateString().split(" ")[3];
+			} */
+
+			if (new Date().getHours() > 19) {
+				var today = new Date();
+				today.setDate(new Date().getDate()+1);
+				var todayFormat = sap.ui.core.format.DateFormat.getDateInstance().format(today);
+			} else {
+				var today = new Date();
+				var todayFormat = sap.ui.core.format.DateFormat.getDateInstance().format(today);
 			}
 
 			//init default value
-			listReport.getContent().getController().getExtensionAPI().setFilterValues("ValidFrom", "FROM", todayFormat);
-			listReport.getContent().getController().getExtensionAPI().setFilterValues("ValidTo", "TO", todayFormat);
+			listReport.getContent().getController().getExtensionAPI().setFilterValues("ValidFrom", "TO", todayFormat);
+			listReport.getContent().getController().getExtensionAPI().setFilterValues("ValidTo", "FROM", todayFormat);
 		}
 
 	});
